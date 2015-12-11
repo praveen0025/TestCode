@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+<servlet>
+		<servlet-name>InsData</servlet-name>
+		<servlet-class>com.Insertdata</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InsData</servlet-name>
+		<url-pattern>/InsData</url-pattern>
+	</servlet-mapping>
+
+<servlet>
+		<servlet-name>DelData</servlet-name>
+		<servlet-class>com.Deletedata</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelData</servlet-name>
+		<url-pattern>/DelData</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>DataB</servlet-name>
+		<servlet-class>com.Db1Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataB</servlet-name>
+		<url-pattern>/DataB</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UpdData</servlet-name>
+		<servlet-class>com.Updatedata</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdData</servlet-name>
+		<url-pattern>/UpdData</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

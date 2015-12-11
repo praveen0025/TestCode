@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+  <head>
+	   	 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	     <title>Hello App Engine</title>
+	     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	 	 		<script type="text/javascript">
+ 				$(document).ready(function()
+ 					{	alert("started");
+ 						var data;
+		 				$("#bsubmit").click(function()
+		 							{ 		 										
+		 									var n=$("#name").val();
+		 									var i=$("#id").val(); 
+		 									if((n!=="")&&(i!==""))
+		 									{	alert(" Inserting  :   "+n+"     "+i);
+						 						$.ajax({
+														type:"POST",
+														url:"InsData",
+														data:{name:n,id:i},
+						 								success:function(db){
+										 							data=db;
+										 							alert("Successfully Inserted");
+						 													}																			
+						 								});//alert("2"+data);
+		 									}
+		 									else{alert("Dear,Please Fill  The Fields Properly");}
+		 							});	
+		 					$("#bdetails").click(function()
+			 					{ 		//alert("details clicked"+data);	 										
+			 							//	document.write("<table border='blue'>");
+			 								$("#details_table").empty();
+			 								$("#details_table").append("<tr><td><b>"+"Employe Name"+"</td><td><b>"+"Employe Id"+"</td></tr>");
+			 								//alert("B4 ajax :"+data);	
+			 								$.ajax({
+												type:"POST",
+												url:"DataB",
+												data:{},
+				 								success:function(db)
+				 											{
+				 											data=db;
+				 											//alert("success :"+data);
+																for (i in data)
+																			{$("#details_table").append("<tr><td>"+data[i]['Emp_Name']+"</td><td>"+data[i]['Emp_Id']+"</td></tr>");
+																				//$("#tab").text(data[i]['Emp_Name']);
+																				// document.write("<tr><td>"+data[i]['Emp_Name']+"</td><br />");
+																				//document.write("<td>"+data[i]['Emp_Id']+ "</td></tr>");
+																			   	// $("#details_table").append("");																    																	
+																				//	 $("#details_table").append("</tr>");
+																			}
+				 											}
+			 								});
+									});	
+		 					
+		 					$("#bdelet").click(function()
+		 							{ 		 										
+		 									var d=$("#del").val();		 									
+		 									if((d!==""))
+		 									{	alert("Deleting :   "+d);
+						 						$.ajax({
+														type:"POST",
+														url:"DelData",
+														data:{delitem:d},
+						 								success:function(db){
+										 							//data=db;
+										 							alert("Successfully Deleted");
+						 													}																			
+						 								});//alert("2"+data);
+		 									}
+		 									else{alert("Dear,Please Fill  The Fields Properly");}
+		 							});		
+
+		 					$("#bupdate").click(function()
+		 							{ 		//alert("clicke d :   "); 										
+		 									var pid=$("#prvid").val();
+		 									var nid=$("#newid").val();
+		 									if((pid!=="")&&(newid!==""))
+		 									{	alert("clicke d :   ")
+						 						$.ajax({
+														type:"POST",
+														url:"UpdData",
+														data:{fromid:pid,toid:nid},
+						 								success:function(db){
+										 							//data=db;
+										 							alert("Successfully Updated");
+						 													}																			
+						 								});//alert("2"+data);
+		 									}
+		 									else{alert("Dear,Please Fill  The Fields Properly");}
+		 							});
+		 					
+		 					
+ 					});
+	 	 		</script>	  
+  </head>
+  <body>  	   			  
+			  	
+	  		<div align="center" >
+			    <label>Employe Name</label>
+			    <label><input type="name" id="name" name="name"></label>
+			    <label>Employe Id</label>
+			    <label><input  id="id" name="id"></label>	
+			     <button type="submit" class="btn btn-primary" id="bsubmit">Insert Now</button>				  				
+	 		 </div>	<br><br><br><br>
+	 		 <div  id="tab2" class=""align="right">
+	 		 	<label>Enter the the Id</label>
+			   	<label><input  id="del" name="id"></label>	
+	 		 	<button type="submit" class="btn btn-danger" id="bdelet">Delete</button>
+		 	</div>
+	 			<br><br><br>
+	 		<div  id="tab"">
+	 		 		<button type="submit" class="btn btn-success" id="bdetails">Get  ALL The  Table Entries</button>
+	 		 			<table id="details_table" border="blue">	 		 			 		 		
+	 		 			</table>		
+	 		 </div><br><br><br><br><br><br><br><br><br><br>
+			<div align="center" >
+			    <label>Previous Employe Id </label>
+			    <label><input  id="prvid" name="updtid"></label>
+			    <label>Updated Employe Id</label>
+			    <label><input  id="newid" name="updtid"></label>	
+			     <button type="submit" class="btn btn-warning" id="bupdate">Update Here with Id</button>				  				
+	 		 </div>
+			 			
+  </body>
+</html>
